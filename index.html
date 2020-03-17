@@ -184,35 +184,6 @@ Everything 搜索神器
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/">
-        <p class="h4 index-header">Microsoft Edge 浏览器及拓展推荐</p>
-      </a>
-
-      <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">账号轻松同步，插件丰富，启动快速，内存占用少 
-2020最值得推荐的浏览器毫无疑问是新版的Microsoft Edge 浏览器。在此之前，相信绝大部分人心中最好用的浏览器是谷歌Chrome浏览器，它简洁、快速、稳定、而且有着丰富的拓展插件。但是也很遗憾，Chrome在国内使用有个明显的弊端：不借助翻墙插件无法同步谷歌账户和进入谷歌应用商店，这也就有了“先有鸡还是先有蛋”的问题。基于谷歌 Chromium 内核的全新浏览器 Microsoft Edge 浏览器，==具有像Chrome 浏览器一样的高效稳定的特点，而且能够轻松同步微软账户和打开微软应用商店下载各种插件，并且具有更低的内存占用空间=</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a href="/2020/03/17/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
         <p class="h4 index-header">Git 学习笔记</p>
       </a>
@@ -363,6 +334,35 @@ Ctrl + 1,2,···6，以此类推
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/">
+        <p class="h4 index-header">Microsoft Edge 浏览器及拓展推荐</p>
+      </a>
+
+      <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">账号轻松同步，插件丰富，启动快速，内存占用少 
+2020最值得推荐的浏览器毫无疑问是新版的Microsoft Edge 浏览器。在此之前，相信绝大部分人心中最好用的浏览器是谷歌Chrome浏览器，它简洁、快速、稳定、而且有着丰富的拓展插件。但是也很遗憾，Chrome在国内使用有个明显的弊端：不借助翻墙插件无法同步谷歌账户和进入谷歌应用商店，这也就有了“先有鸡还是先有蛋”的问题。基于谷歌 Chromium 内核的全新浏览器 Microsoft Edge 浏览器，==具有像Chrome 浏览器一样的高效稳定的特点，而且能够轻松同步微软账户和打开微软应用商店下载各种插件，并且具有更低的内存占用空间=</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a href="/2020/03/17/%E7%BD%91%E7%BB%9C%E5%B0%8F%E8%AF%B45%E5%A4%A7%E5%B7%85%E5%B3%B0%E7%A5%9E%E4%BD%9C/">
         <p class="h4 index-header">网络小说5大巅峰神作</p>
       </a>
@@ -466,6 +466,28 @@ Run server$ hexo server</div>
   </div>
 </div>
   
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'true' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"依然爱你","artist":"王力宏","url":"/songs/music.mp3","cover":"/img/music_cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
 
   
 

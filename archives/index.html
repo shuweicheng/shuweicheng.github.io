@@ -154,12 +154,6 @@
     </a>
   
     
-    <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Microsoft Edge 浏览器及拓展推荐</span>
-      <span style="float: right;">03-17</span>
-    </a>
-  
-    
     <a href="/2020/03/17/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Git 学习笔记</span>
       <span style="float: right;">03-17</span>
@@ -174,6 +168,12 @@
     
     <a href="/2020/03/17/%E7%90%86%E8%B4%A2%E5%85%A5%E9%97%A8/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">理财入门</span>
+      <span style="float: right;">03-17</span>
+    </a>
+  
+    
+    <a href="/2020/03/17/Microsoft%20Edge%20%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E6%8B%93%E5%B1%95%E6%8E%A8%E8%8D%90/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Microsoft Edge 浏览器及拓展推荐</span>
       <span style="float: right;">03-17</span>
     </a>
   
@@ -230,6 +230,28 @@
   </div>
 </div>
   
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'true' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"依然爱你","artist":"王力宏","url":"/songs/music.mp3","cover":"/img/music_cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
 
   
 
