@@ -1,211 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
+
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="[TOC] Git 是目前世界上最先进的分布式版本控制系统，是最常用的代码管理和协作的平台。 安装在 Ubuntu Linux上安装  sudo apt-get install git  在 Windows 上安装 下载地址： Git - Downloads 首次配置 git config –global user.name “Your Name” git config –global user.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Git 学习笔记">
-<meta property="og:url" content="http://yoursite.com/2020/03/17/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="小舒的酒馆不打烊">
-<meta property="og:description" content="[TOC] Git 是目前世界上最先进的分布式版本控制系统，是最常用的代码管理和协作的平台。 安装在 Ubuntu Linux上安装  sudo apt-get install git  在 Windows 上安装 下载地址： Git - Downloads 首次配置 git config –global user.name “Your Name” git config –global user.">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuweicheng/gallery/img0.jfif">
-<meta property="article:published_time" content="2020-03-17T11:04:13.000Z">
-<meta property="article:modified_time" content="2020-03-17T11:07:02.017Z">
-<meta property="article:author" content="Shu Weicheng">
-<meta property="article:tag" content="科技">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/shuweicheng/gallery/img0.jfif">
-
-<link rel="canonical" href="http://yoursite.com/2020/03/17/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true
-  };
-</script>
-
-  <title>Git 学习笔记 | 小舒的酒馆不打烊</title>
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="专注分享">
+  <meta name="author" content="Shu Weicheng">
+  <meta name="keywords" content="科技">
+  <title>Git 学习笔记 - 小舒的酒馆不打烊</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">小舒的酒馆不打烊</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">Hello, world</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-  </ul>
-
-</nav>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+<!-- 自定义样式保持在最底部 -->
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>小舒的酒馆不打烊</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
           
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shu Weicheng">
-      <meta itemprop="description" content="专注分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小舒的酒馆不打烊">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Git 学习笔记
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
               
-
-              <time title="创建时间：2020-03-17 19:04:13 / 修改时间：19:07:02" itemprop="dateCreated datePublished" datetime="2020-03-17T19:04:13+08:00">2020-03-17</time>
             </span>
 
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期二, 三月 17日 2020, 7:04 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    2.6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      10 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
           
-
         </div>
-      </header>
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-        <p>[TOC]</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <p>[TOC]</p>
 <p>Git 是目前世界上最先进的分布式版本控制系统，是最常用的代码管理和协作的平台。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在 Ubuntu Linux上安装</p>
 <blockquote>
@@ -226,7 +190,7 @@
 </ol>
 <h2 id="本地版本管理"><a href="#本地版本管理" class="headerlink" title="本地版本管理"></a>本地版本管理</h2><p>Git 管理的文件分为：工作区，版本库，版本库又分为暂存区 stage 和 master 分支(仓库)。</p>
 <p>工作区&gt;&gt;&gt;&gt;暂存区&gt;&gt;&gt;&gt;仓库</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shuweicheng/gallery/img0.jfif" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shuweicheng/gallery/img0.jfif" srcset="/img/loading.gif" alt=""></p>
 <ul>
 <li><code>git status</code> 掌握工作区的状态</li>
 <li>如果<code>git status</code> 告诉你有文件被修改过，用 <code>git diff</code> 可以查看修改内容。</li>
@@ -252,19 +216,14 @@
 <h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>就是提供Git仓库托管服务的（国内用<a href="https://gitee.com/" target="_blank" rel="noopener">码云</a>），只要注册一个GitHub账号，就可以免费获得Git远程仓库。</p>
 <p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：</p>
 <p><strong>第1步：</strong>创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
-
-<p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code></pre><p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。</p>
 <p>如果一切顺利的话，可以在用户主目录里找到<code>.ssh</code>目录，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露出去，<code>id_rsa.pub</code>是公钥，可以放心地告诉任何人。</p>
 <p><strong>第2步：</strong>登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容，然后点“Add Key”，你就应该看到已经添加的Key。</p>
 <h3 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h3><p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code>；</p>
 <p>关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容；</p>
 <p>此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改；</p>
-<h3 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ssh:&#x2F;&#x2F;user@domain.com&#x2F;repo.git </span><br><span class="line">$ git clone https:&#x2F;&#x2F;domain.com&#x2F;repo.git</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>分类十分有利于项目合作和管理</p>
+<h3 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h3><pre><code> $ git clone ssh://user@domain.com/repo.git 
+ $ git clone https://domain.com/repo.git</code></pre><h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>分类十分有利于项目合作和管理</p>
 <h3 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h3><p>查看分支：<code>git branch</code></p>
 <p>创建分支：<code>git branch &lt;name&gt;</code></p>
 <p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
@@ -302,8 +261,8 @@
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">Git教程 - 廖雪峰的官方网站</a></p>
 <h1 id="Git-Cheatsheet（Git-备忘录）"><a href="#Git-Cheatsheet（Git-备忘录）" class="headerlink" title="Git Cheatsheet（Git 备忘录）"></a>Git Cheatsheet（Git 备忘录）</h1><h2 id="CREATE-创建"><a href="#CREATE-创建" class="headerlink" title="CREATE(创建)"></a>CREATE(创建)</h2><ul>
 <li><p>Clone an existing repository</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ssh:&#x2F;&#x2F;user@domain.com&#x2F;repo.git </span><br><span class="line">$ git clone https:&#x2F;&#x2F;domain.com&#x2F;repo.git</span><br></pre></td></tr></table></figure>
-
+<pre><code class="git">$ git clone ssh://user@domain.com/repo.git 
+$ git clone https://domain.com/repo.git</code></pre>
 </li>
 </ul>
 <p>Git 支持多种协议，默认的 <code>git://</code> 使用ssh，但也可以使用 <code>https</code> 等其他协议。</p>
@@ -311,43 +270,29 @@
 <ul>
 <li>Create a new local repository</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-
-<p>通过 <code>git init</code> 命令把这个文件夹变成Git可以管理的仓库。</p>
+<pre><code>$ git init</code></pre><p>通过 <code>git init</code> 命令把这个文件夹变成Git可以管理的仓库。</p>
 <p>在文件夹目录下面会多一个 <code>.git</code> 的文件目录，里面就是Git的管理信息。</p>
 <h2 id="LOCAL-CHANGES（本地修改）"><a href="#LOCAL-CHANGES（本地修改）" class="headerlink" title="LOCAL CHANGES（本地修改）"></a>LOCAL CHANGES（本地修改）</h2><ul>
 <li>Changed files in your working directory</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
-
-<p>确认仓库当前的状态。</p>
+<pre><code>$ git status</code></pre><p>确认仓库当前的状态。</p>
 <ul>
 <li>Changes to tracked files</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p> 比较工作区和暂存区文件差别</p>
+<pre><code>$ git diff &lt;file&gt;</code></pre><p> 比较工作区和暂存区文件差别</p>
 <p><code>git diff --cached</code> 查看暂存区和仓库差异，</p>
 <p><code>git diff HEAD -- &lt;file&gt;</code>  查看工作区和仓库的差异</p>
 <ul>
 <li>Add all current changes to the next commit</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git add .</code></pre><ul>
 <li>Add some changes in <file> to the next commit</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可反复多次使用，添加多个文件</p>
+<pre><code>$ git add &lt;file&gt;</code></pre><p>可反复多次使用，添加多个文件</p>
 <ul>
 <li>Commit previously staged changes</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;xxx &quot;</span><br></pre></td></tr></table></figure>
-
-<p><code>-m</code> 后面输入的是本次提交的说明（<strong>关键</strong>）。</p>
+<pre><code>$ git commit -m &quot;xxx &quot;</code></pre><p><code>-m</code> 后面输入的是本次提交的说明（<strong>关键</strong>）。</p>
 <h2 id="COMMIT-HISTORY（提交历史）"><a href="#COMMIT-HISTORY（提交历史）" class="headerlink" title="COMMIT HISTORY（提交历史）"></a>COMMIT HISTORY（提交历史）</h2><ul>
 <li>Show all commits, starting with newest</li>
 </ul>
@@ -357,317 +302,304 @@
 <h2 id="BRANCHES-amp-TAGS（分支与标签）"><a href="#BRANCHES-amp-TAGS（分支与标签）" class="headerlink" title="BRANCHES &amp; TAGS（分支与标签）"></a>BRANCHES &amp; TAGS（分支与标签）</h2><ul>
 <li>List all existing brances</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git branch</code></pre><ul>
 <li>Switch HEAD branch</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git switch &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>推荐使用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git  checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>老版本使用，新版本兼容，为避免误解，建议使用第一个。</p>
+<pre><code>$ git switch &lt;branch&gt;</code></pre><p><strong>推荐使用</strong></p>
+<pre><code>$ git  checkout &lt;branch&gt;</code></pre><p>老版本使用，新版本兼容，为避免误解，建议使用第一个。</p>
 <ul>
 <li>Create a new branch based on your current HEAD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git branch &lt;new-branch&gt;</code></pre><ul>
 <li>Delete a local branch</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git branch -d &lt;branch&gt;</code></pre><ul>
 <li>Mark the current commit with a tag</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>由于commit的号是6a1e这样不便于记忆的数字，因此增加了标签(tag)功能。（例如 v1.2，进行版本信息标注）</p>
+<pre><code>$ git tag &lt;tag-name&gt;</code></pre><p>由于commit的号是6a1e这样不便于记忆的数字，因此增加了标签(tag)功能。（例如 v1.2，进行版本信息标注）</p>
 <h2 id="UPDATE-amp-PUBLISH（更新与推送）"><a href="#UPDATE-amp-PUBLISH（更新与推送）" class="headerlink" title="UPDATE &amp; PUBLISH（更新与推送）"></a>UPDATE &amp; PUBLISH（更新与推送）</h2><ul>
 <li>List all currently configured remotes</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
-
-<p> 远程仓库的默认名为<code>origin</code></p>
+<pre><code>$ git remote -v</code></pre><p> 远程仓库的默认名为<code>origin</code></p>
 <ul>
 <li>Add new remote repository, named <remote></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add &lt;shortname&gt; &lt;url&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git remote add &lt;shortname&gt; &lt;url&gt;</code></pre><ul>
 <li>Download all changes from <remote>, but don’t integrate into HEAD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch &lt;remote&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git fetch &lt;remote&gt;</code></pre><ul>
 <li>Download changes and directly merge/integrate into HEAD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git pull &lt;remote&gt; &lt;branch&gt;</code></pre><ul>
 <li>Publish local changes on a remote</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remote&gt; &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git push &lt;remote&gt; &lt;branch&gt;</code></pre><ul>
 <li>Delete a branch on the remote</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -dr &lt;remote&#x2F;branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git branch -dr &lt;remote/branch&gt;</code></pre><ul>
 <li>Publish your tags</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push --tags</span><br></pre></td></tr></table></figure>
-
-<p> 提交所有tags</p>
+<pre><code>$ git push --tags</code></pre><p> 提交所有tags</p>
 <h2 id="MERGE-amp-REBASE（合并和变基）"><a href="#MERGE-amp-REBASE（合并和变基）" class="headerlink" title="MERGE &amp; REBASE（合并和变基）"></a>MERGE &amp; REBASE（合并和变基）</h2><ul>
 <li>Merge <branch> into your current HEAD</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git merge &lt;branch&gt;</code></pre><ul>
 <li>Rebase your current HEAD onto <branch></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Don’t rebase pulished commits!</p>
+<pre><code>$ git rebase &lt;branch&gt;</code></pre><p>Don’t rebase pulished commits!</p>
 <p>没完全理解rebase的功能。rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
 <p>当你最新推送的版本和别人已经推送到远程的版本要合并时，就是把你上一次推送的版本和别人现已经推送的版本合并，然后在这个合并的基础上增加你新开发的补丁。（且从这个基础上往后的版本的版本号和你之前的不一样）</p>
 <ul>
 <li>Use your editor to manually solve conflicts and (after resolving) mark file as resolved</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm &lt;resolved-file&gt;</span><br></pre></td></tr></table></figure>
-
-<p>两个功能一样，在本地解决矛盾，然后add、commit</p>
+<pre><code>$ git add &lt;resolved-file&gt;</code></pre><pre><code>$ git rm &lt;resolved-file&gt;</code></pre><p>两个功能一样，在本地解决矛盾，然后add、commit</p>
 <h2 id="UNDO（撤销）"><a href="#UNDO（撤销）" class="headerlink" title="UNDO（撤销）"></a>UNDO（撤销）</h2><ul>
 <li>Discard all local changes in your working directory</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
+<pre><code>$ git reset --hard HEAD</code></pre><ul>
 <li>Reset your HEAD pointer to a previous commit and discard all changes since then</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>$ git reset --hard &lt;commit&gt;</code></pre>
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
 
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/03/17/%E7%BD%91%E7%BB%9C%E5%B0%8F%E8%AF%B45%E5%A4%A7%E5%B7%85%E5%B3%B0%E7%A5%9E%E4%BD%9C/" rel="prev" title="网络小说5大巅峰神作">
-      <i class="fa fa-chevron-left"></i> 网络小说5大巅峰神作
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/17/Typora%EF%BC%8C%E8%AE%A9%E6%88%91%E7%88%B1%E4%B8%8D%E9%87%8A%E6%89%8B%E7%9A%84%E4%BC%98%E9%9B%85%E5%86%99%E4%BD%9C%E5%88%A9%E5%99%A8/" rel="next" title="Typora，让我爱不释手的优雅写作利器">
-      Typora，让我爱不释手的优雅写作利器 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
+            
           </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首次配置"><span class="nav-number">1.1.</span> <span class="nav-text">首次配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建版本库"><span class="nav-number">2.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地版本管理"><span class="nav-number">3.</span> <span class="nav-text">本地版本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本回退"><span class="nav-number">3.1.</span> <span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改"><span class="nav-number">3.2.</span> <span class="nav-text">撤销修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">4.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加远程库"><span class="nav-number">4.1.</span> <span class="nav-text">添加远程库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从远程库克隆"><span class="nav-number">4.2.</span> <span class="nav-text">从远程库克隆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">5.</span> <span class="nav-text">分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建与合并分支"><span class="nav-number">5.1.</span> <span class="nav-text">创建与合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">5.2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支策略"><span class="nav-number">5.3.</span> <span class="nav-text">分支策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多人协作"><span class="nav-number">5.4.</span> <span class="nav-text">多人协作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">6.</span> <span class="nav-text">引用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-Cheatsheet（Git-备忘录）"><span class="nav-number"></span> <span class="nav-text">Git Cheatsheet（Git 备忘录）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CREATE-创建"><span class="nav-number">1.</span> <span class="nav-text">CREATE(创建)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LOCAL-CHANGES（本地修改）"><span class="nav-number">2.</span> <span class="nav-text">LOCAL CHANGES（本地修改）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#COMMIT-HISTORY（提交历史）"><span class="nav-number">3.</span> <span class="nav-text">COMMIT HISTORY（提交历史）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BRANCHES-amp-TAGS（分支与标签）"><span class="nav-number">4.</span> <span class="nav-text">BRANCHES &amp; TAGS（分支与标签）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UPDATE-amp-PUBLISH（更新与推送）"><span class="nav-number">5.</span> <span class="nav-text">UPDATE &amp; PUBLISH（更新与推送）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MERGE-amp-REBASE（合并和变基）"><span class="nav-number">6.</span> <span class="nav-text">MERGE &amp; REBASE（合并和变基）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNDO（撤销）"><span class="nav-number">7.</span> <span class="nav-text">UNDO（撤销）</span></a></li></ol></div>
       </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Shu Weicheng"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Shu Weicheng</p>
-  <div class="site-description" itemprop="description">专注分享</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">7</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/shuweicheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuweicheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:shuweicheng@outlook.com" title="E-Mail → mailto:shuweicheng@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/zi-chen-feng" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;zi-chen-feng" rel="noopener" target="_blank"><i class="fa fa-fw fa-知乎"></i>知乎</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1401456754&auto=1&height=66"></iframe>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Shu Weicheng</span>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
-  </div>
-
-        
-
-
-
-
-
-
-
 
       </div>
-    </footer>
+    
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
   
 
   
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Git 学习笔记&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
