@@ -17,7 +17,7 @@
   <meta name="description" content="专注分享">
   <meta name="author" content="Shu Weicheng">
   <meta name="keywords" content="">
-  <title>Hexo 博客搭建 - 小舒的酒馆不打烊</title>
+  <title>博客搭建（二）：Ubuntu云服务器 + Hexo - 小舒的酒馆不打烊</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -132,7 +132,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期四, 三月 19日 2020, 9:00 晚上
+                  星期五, 三月 20日 2020, 1:10 下午
                 </p>
               
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.4k 字
+                    577 字
                   </span>
                 
 
@@ -149,7 +149,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      4 分钟
+                      2 分钟
                   </span>
                 
 
@@ -177,84 +177,26 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <p>是否想过拥有一个属于自己的博客网站？但总觉得搭建自己的个人博客肯定门槛挺高，无从下手😢。</p>
-<p>今天来给大家介绍一种既简单，成本又低的搭建博客方法: Github Pages / Coding Page + Hexo。（5元钱搭建一个网站心不心动？😁）</p>
-<p>首先给大家看一下搭建起来的效果（也欢迎点击我的博客站点查看：<a href="https://www.shulab.top/" target="_blank" rel="noopener">小舒的酒馆不打烊</a>）：</p>
-<p><img src="https://gitee.com/shuweicheng/pic/raw/master/img/20200319134938.png" srcset="/img/loading.gif" alt=""></p>
-<h1>概念介绍</h1>
-<h2 id="HEXO">HEXO</h2>
-<p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 是一个简单、快速、强大的静态博客框架，基于Node.js。它主要有以下优点：</p>
+              <h2 id="Coding-Pages-抽风了">Coding Pages 抽风了</h2>
+<p>前几天刚刚搭建好 Coding Pages / Github Pages + Hexo 的静态网站，没想到还没用到两天，博客突然就打不开了。</p>
+<p><strong>本地预览正常，deploy 也正常，而且在 Coding 和 Github 上查看都已经上传成功，即使更换成流量来打开网页依旧是无响应状态</strong>。</p>
+<p>自己各种百度搜索也找不到答案，心态崩溃，差点想删库重建😑。</p>
+<p>最后还是想尝试在网上问问，于是自己上知乎找了下自己之前关注的专栏<a href="https://zhuanlan.zhihu.com/c_1215655729367113728" target="_blank" rel="noopener">Hexo+Github个人博客搭建美化 - 知乎专栏</a> ，试着给博主私信了一下。没想到专栏博主马上回消息，给了一些测试建议😝，结果发现实际上是 Coding Pages 突然崩了。</p>
+<p><strong>于是，学到了一点：<code>ping 域名</code></strong></p>
+<p><strong>通过在cmd中ping自己的域名，可以看到实际上反馈的ip地址是多少，这样可以判断到底是Coding page的问题，还是Github Pages的问题？</strong></p>
+<p><strong>静态网站的实际连接情况如何，也可以进行检测：</strong></p>
 <ul>
-<li>极速生产静态页面</li>
-<li>一键部署博客</li>
-<li>丰富的插件和主题</li>
-<li>支持 Markdown</li>
+<li><strong>Github Pages: <code>ping xxx.github.io</code> 来检测连接网络。</strong></li>
+<li><strong>Coding Pages: <code>ping 静态网站给的地址</code>来检测连接网络。</strong></li>
 </ul>
-<p>实际上，你可能仅仅会用上<strong>不超过5条</strong>的部署命令，所以你刚开始搭建博客时可以什么都不懂，按照教程打一遍命令就行了。</p>
-<p><img src="https://gitee.com/shuweicheng/pic/raw/master/img/20200319205531.png" srcset="/img/loading.gif" alt=""></p>
-<h2 id="Github-Pages-Coding-Pages">Github Pages / Coding Pages</h2>
-<ul>
-<li>Github Pages：是 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> 推出的功能，只要建立了 <a href="http://github.io" target="_blank" rel="noopener">github.io</a> 库，就默认在使用。它相当于一个服务器，是用来托管 Github 上静态网页的免费站点，可以保存和维护你的博客文件。</li>
-<li>Coding Pages：和 Github Pages 作用相同，属于腾讯平台。因为 Github 服务器在国外，国内访问速度有时会比较慢，这就限制了你建立的博客的访问速度，因此为了双重保障和你的博客运行速度，建议和 Github Pages 同时部署。  在最新的 <a href="https://coding.net/" target="_blank" rel="noopener">CODING </a> 网站中Coding Pages 直接用的<u>静态网页</u>表示了，功能和以前一样。</li>
-</ul>
-<blockquote>
-<p>利用 Hexo 和 Github Pages / Coding Pages搭建博客，实际上就是利用 Hexo 在本地（你的电脑上）生成一个博客站点，然后利用网络将它传输到Github/Coding上进行拷贝和备份。再由 Github 和 Coding 提供的Github Pages / Coding Pages服务将博客部署到网上，这样你的博客就可以作为一个独立的站点被别人浏览（正式上线）。同时你也可以在 Github 和 Coding 上管理你的博客。</p>
-</blockquote>
-<h1>搭建过程</h1>
-<h2 id="搭建步骤">搭建步骤</h2>
-<ol>
-<li>安装 Git、Node.js、Hexo</li>
-<li>获得个人网站域名</li>
-<li>创建 Github 个人仓库、Coding 部署静态网页</li>
-<li>绑定域名</li>
-<li>推送网站</li>
-<li>个性化（这点后面单独讲）</li>
-</ol>
-<p>具体的操作网上资料十分丰富，我这里不细细絮叨了。推荐几个教程给大家，我也是按照这些教程一步步做的，基本问题不大，需要注意的坑我也会记在下面，所以建议大家先阅读一下全文。</p>
-<ul>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/26625249?utm_source=qq&amp;utm_medium=social" target="_blank" rel="noopener">GitHub+Hexo 搭建个人网站详细教程</a> 详细讲解了 Github Pages + Hexo 的具体步骤。</p>
-</li>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/111614119" target="_blank" rel="noopener">（一）Github + Hexo 搭建个人博客超详细教程</a> 超级详细(后悔看到的太晚了😢)讲解了 Github Pages 的具体步骤。</p>
-</li>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/111796666" target="_blank" rel="noopener">Hexo 双线部署到 Coding 和 GitHub 提升访问速度</a> 详细讲解了如何双线部署，提高访问速度。</p>
-</li>
-</ul>
-<h3 id="我的建议和踩过的坑">我的建议和踩过的坑</h3>
-<ul>
-<li><strong>域名建议买国内的（腾讯云、阿里云都有），不仅能够提供双路线解析（境内、境外），而且价格不贵（我够买的 .top 只要5元）</strong>。我之前用的国外 <a href="http://name.com" target="_blank" rel="noopener">name.com</a> 的域名管理（通过 Github 学生认证，域名可以免费一年），却无法进行双路线的解析，所以无法绑定 Coding 的静态网页，只能使用 Github Pages，最后博客的访问速度真令我绝望😢。</li>
-<li><a href="https://zhuanlan.zhihu.com/p/26625249?utm_source=qq&amp;utm_medium=social" target="_blank" rel="noopener">GitHub+Hexo 搭建个人网站详细教程</a> 里有一点没有提及。那就是在安装 Hexo 这一步，<code>hexo init blog</code> 及之后的命令都是<strong>在 Clone 下的 Blog/blog 目录</strong>下进行的，一定要注意，不能弄错，不然第一步直接弃坑。</li>
-<li>代码运行后，如果错误会提示错误信息。这些提示很重要，如果不能看懂错误信息，那么<strong>复制提示信息搜索以下，你会立马得到你要的答案</strong>。一般来说，初学者会经常由于配置表里面的缩进问题报错。</li>
-<li><strong>除了搜索错误提示，直接查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官方文档</a>也是好办法。</strong></li>
-<li><strong>看配置文档的时候，Sublime 和 notepad ++ 会是你的好帮手。</strong></li>
-<li><strong>如果提交成功发现网页端博客还是没显示变化，那么强制刷新（F5）试一下。</strong></li>
-</ul>
-<h2 id="个性化">个性化</h2>
-<p>现在到了关键的个性化设置了，Hexo 有丰富的主题库 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes | Hexo</a>，可以帮助你实现各式各样的排版。虽然很多人推荐 next 主题，但是对于初学者来说可能并不想看那么多的代码和英文介绍，要是有问题找解决办法都头痛。所以我<strong>推荐大家先尝试一下主题库里带中文文档说明的主题</strong>，这样上手会快很多，以后再挑战其他主题。我采用的是 Fluid 主题 <a href="https://hexo.fluid-dev.com/docs/" target="_blank" rel="noopener">Hexo Fluid 用户手册</a>，中文讲解很细致很贴心。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shuweicheng/gallery/img20200319201845.png" srcset="/img/loading.gif" alt=""></p>
-<ul>
-<li>需要提醒一下 Front-matter <strong>添加文章封面的写法（第4行）</strong>：</li>
-</ul>
-<pre><code class="language-markdown">---
-title: Git 学习笔记
-date: 2020-03-17 19:04:13
-index_img: url
-tags: Git
-categories: 学习
-
----
-</code></pre>
-<ul>
-<li>在 typora 你会用到 emoji 表情，上下标、脚注等 markdown 拓展语法，这时候你就要安装 <strong>hexo 的插件</strong>来支持这些功能。教程参考这篇 <a href="https://blog.csdn.net/weixin_41287260/article/details/103050545" target="_blank" rel="noopener">hexo插件支持emoji表情</a>。</li>
-</ul>
-<p><strong>最后给大家推荐几个好看的博客，里面也有他们关于博客的倒腾故事：</strong></p>
-<ul>
-<li><a href="http://jmyblog.top/" target="_blank" rel="noopener">谁把钱丢了</a></li>
-<li><a href="https://eatrice.top/" target="_blank" rel="noopener">吃白饭的休伯利安号</a></li>
-<li><a href="https://yfzhou.coding.me/" target="_blank" rel="noopener">Felix</a></li>
-</ul>
+<p>当然，也是可以直接ping ip地址的。</p>
+<h2 id="Ubuntu云服务器-Hexo">Ubuntu云服务器 + Hexo</h2>
+<p>因为 Coding Pages 时而抽风，Github Pages 访问速度又过慢，所以还是走上了云服务器+Hexo的路，只是这种方法要进行备案。</p>
+<p>我选择的是腾讯云服务器，学生价一个月 10 元。建站实际上用 Cent OS 用的更多，但是个人相对熟悉 Ubuntu 一点，所以用 Ubuntu 系统。参照这篇教程<a href="https://www.jianshu.com/p/70bf58c48010" target="_blank" rel="noopener">HEXO 部署到云服务器详细指南</a>，很快便将博客迁移到了到自己的云服务器上。</p>
+<p>这时候不得不谈备案的问题：如果不备案，是无法通过域名访问到过服务器的，但是备案时间比较长，大约二十天。所以这时候你仅能通过 ip 地址访问自己的网站，通过域名访问会提示你需要备案。具体政策服务器接入商会讲解。</p>
+<p><img src="https://gitee.com/shuweicheng/pic/raw/master/img/20200320140032.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="PS">PS:</h2>
+<p>最后再补充一点<a href="https://blog.csdn.net/sophisticated_/article/details/83758400" target="_blank" rel="noopener">markdown emoji表情代码</a>，之前只知道几个代码，表情着实有限😅。</p>
 
             </div>
             <hr>
@@ -273,9 +215,11 @@ categories: 学习
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ubuntu/">ubuntu</a>
+                    
+                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
                     
                   </span>
                 
@@ -471,7 +415,7 @@ categories: 学习
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hexo 博客搭建&nbsp;",
+        "博客搭建（二）：Ubuntu云服务器 + Hexo&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
